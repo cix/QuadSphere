@@ -34,7 +34,8 @@ module QuadSphere
         Proc.new{ |l, m, n| [ -m,  n, -l ] },
         Proc.new{ |l, m, n| [  l,  n, -m ] },
         Proc.new{ |l, m, n| [  m,  l, -n ] } ]
-    private_constant :FORWARD_PARAMETERS
+    private_constant :FORWARD_PARAMETERS \
+      if self.respond_to?(:private_constant) # don't die for this in 1.8
 
     # Computes the projection of a point on the surface of the sphere,
     # given in spherical coordinates (φ,θ), to a point of cartesian
@@ -90,7 +91,8 @@ module QuadSphere
         Proc.new{ |xi, eta, zeta| [ -zeta,   -xi,   eta ] },
         Proc.new{ |xi, eta, zeta| [    xi, -zeta,   eta ] },
         Proc.new{ |xi, eta, zeta| [   eta,    xi, -zeta ] } ]
-    private_constant :INVERSE_PARAMETERS
+    private_constant :INVERSE_PARAMETERS \
+      if self.respond_to?(:private_constant) # don't die for this in 1.8
 
     # Computes the projection of a point at cartesian coordinates
     # (χ,ψ) on one of the six cube faces, to a point at spherical
