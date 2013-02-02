@@ -2,8 +2,8 @@
 
 Gem::Specification.new do |s|
   s.name        = 'quad_sphere'
-  s.version     = '1.0.0'
-  s.date        = '2013-01-31'
+  s.version     = '0.9.0'
+  s.date        = '2013-02-02'
   s.summary     = 'Quadrilateralized spherical cube projection'
   s.description = <<-END
     This is an implementation of the quadrilateralized spherical cube
@@ -15,6 +15,6 @@ Gem::Specification.new do |s|
   s.email       = 'crincon@gmail.com'
   s.files       = [ 'lib/quad_sphere.rb',
                     'lib/quad_sphere/tangential.rb',
-                    'lib/quad_sphere/cobe.rb' ]
+                    'lib/quad_sphere/csc.rb' ]
   s.homepage    = 'http://rubygems.org/gems/quad_sphere'
 end
