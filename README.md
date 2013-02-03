@@ -1,31 +1,52 @@
 QuadSphere
 ==========
 
-By César Rincón
+QuadSphere is a small Ruby gem that implements a projection of
+spherical to planar coordinates, called the "quadrilateralised
+spherical cube".  This useful for handling geographic or astronomic
+data, or for general mapmaking.
 
-QuadSphere is a Ruby implementation of a mapping of the sphere onto
-the faces of a cube, that preserves areas, and produces no
-singularities at the poles or elsewhere.  This is useful for storing
-spherical data in raster form: then you can integrate directly on the
-face planes, without having to map your data back to the original
-sphere.
+Background
+----------
 
-The particular transformation is the [COBE Quadrilateralized Spherical
-Cube][1], proposed in 1975 by Chan and O'Neill, and used extensively
-by the Cosmic Background Explorer project.  Note specifically that
-this is _not_ the projection by Laubscher and O'Neill, 1976, which is
-non-differentiable along the diagonals.  Also note that only the
-spherical projection is implemented, not the binning scheme - we don't
-deal with pixels at all.
+The quadrilateralised spherical cube, or "quad sphere" for short, is a
+projection of the sphere onto the sides of an inscribed cube, using a
+curvilinear transformation designed to preserve area.  It produces no
+singularities at the poles or anywhere; distortion is moderate over
+the entire sphere.  This makes it well-suited for storing data
+collected on a spherical surface, like the Earth or the celestial
+sphere, as rasters on six planes: each equal-area pixel corresponds to
+an equal-area region on the sphere, so numerical analysis can be
+performed on the pixels rather than the original surface.
+
+This projection was proposed in 1975 in the report "Feasibility Study
+of a Quadrilateralized Spherical Cube Earth Data Base", by F. K. Chan
+and E. M. O'Neill and it was used to hold data for the Cosmic
+Background Explorer project (COBE).  This projection, along with a
+binning scheme for storing pixels along a Z-order curve, became the
+"COBE Sky Cube" format.
+
+This is not a Sky Cube reader, though — neither the binning scheme nor
+the FITS format are implemented here.  You should use a FITS library
+if you need to read COBE data.  And, for current astronomical work,
+the quadrilateralised spherical cube projection has been superseded by
+Healpix, so you should use that instead.  This implementation was only
+created because this author had a very specific need involving storage
+and manipulation of spherical data — for a game, no less.
+
+Note also that this is _not_ the projection by Laubscher and O'Neill,
+1976, which is non-differentiable along the diagonals.
 
 As Chan's original report is not readily available, this
 implementation is based on formulae found in FITS WCS documents.
 Specifically: "Representations of celestial coordinates in FITS (Paper
-II)", Calabretta, M. R., and Greisen, E. W., <i>Astronomy &
-Astrophysics</i>, 395, 1077-1122, 2002.  This is [available from the
-FITS Support Office at NASA/GSFC][2].  Mind the possible implications
-of this on the accuracy of the transformation, discussed in the
-documentation of {QuadSphere::CSC.forward_distort}.
+II)", Calabretta, M. R., and Greisen, E. W., _Astronomy &
+Astrophysics_, 395, 1077-1122, 2002.  This is [available from the FITS
+Support Office at NASA/GSFC][2].
+
+Finally, bear in mind that this is not an exact projection, it's
+accuracy is limited — see discussion in the documentation of
+`QuadSphere::CSC.forward_distort`.
 
 Examples and stuff to follow; see the YARD-generated docs for the time
 being.
