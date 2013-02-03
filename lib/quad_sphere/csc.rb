@@ -165,7 +165,7 @@ module QuadSphere
     # approximation there, don't quote me on those figures).  So aye,
     # we could use more precision.
     #
-    # There is code in the +extras+ directory to compute the error
+    # There is code in the +examples+ directory to compute the error
     # distribution, and even generate a picture showing the areas of
     # low and high error on the plane.  Peek there if you're curious.
     #
