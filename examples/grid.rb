@@ -3,12 +3,12 @@
 require 'quad_sphere/csc'
 require 'chunky_png'
 
-# This is certainly not the best way to draw a grid, mind you, but
-# it's a very compact one.
+# Not the best way to draw a grid — we repaint a lot of pixels.  But
+# it's compact and hopefully clear.
 
 # The size of each cube face, and some colours:
-size = 99
-colour = ChunkyPNG::Color.html_color(:mediumvioletred)
+size = 149
+colour = ChunkyPNG::Color.html_color(:grey)
 background = ChunkyPNG::Color::WHITE
 face_border = ChunkyPNG::Color::BLACK
 
@@ -24,24 +24,44 @@ faces = {
 
 image = ChunkyPNG::Image.new(4*size+1, 3*size+1, ChunkyPNG::Color::TRANSPARENT)
 
-# QuadSphere::CSC.inverse takes coordinates from -1 to 1. So we'll
-# use this factor for scale:
-f = 2.0/size
+# The longest distance on a cube face is the diagonal, which is of
+# length d=size*√2. This is an angle of π/2 on the sphere. We split
+# π/2 over d to get a small angle Δ that, along the diagonal, would
+# map to pixels at unit distance from each other, and we use Δ as
+# "angular resolution" everywhere, because this will keep our lines
+# continuous.  This is wasteful: Δ could be larger everywhere else; we
+# repaint a lot of pixels.  But hey, tis just an example.
+delta = Math::PI/(2*size*Math::sqrt(2))
 
-# To work.  For each face...
+# And this is a lambda to paint a point by latitude and longitude.
+# We'll do this a lot.
+plot = lambda do |lon,lat|
+  face, x, y = QuadSphere::CSC.forward(lon, lat)
+  x = (size*(x+1)/2).floor
+  y = (size*(y+1)/2).floor
+  offx, offy = faces[face]
+  image[x+offx,y+offy] = colour
+end
+
+# To work.  Draw a rectangle around each face.
 faces.each_pair do |face, offsets|
   off_x, off_y = offsets
-  # ... draw a rectangle around it...
   image.rect(off_x, off_y, off_x+size, off_y+size, face_border, background)
-  # ... then for each pixel in the face...
-  size.times do |y|
-    size.times do |x|
-      # ... compute its latitude and longitude in degrees...
-      lon, lat = QuadSphere::CSC.inverse(face, x*f - 1, y*f - 1).collect\
-        { |angle| (angle*180/Math::PI).round }
-      # ... and when either is an multiple of 10°, paint the pixel.
-      image[x+off_x,y+off_y] = colour if lon % 10 == 0 || lat % 10 == 0
-    end
+end
+
+# Draw the meridians.
+36.times do |meridian|
+  lon = meridian*Math::PI/18
+  (-Math::PI/2).step(Math::PI/2, delta) do |lat|
+    plot.call(lon,lat)
+  end
+end
+
+# Draw the parallels.
+18.times do |parallel|
+  lat = -Math::PI/2 + parallel*Math::PI/18
+  (-Math::PI).step(Math::PI, delta) do |lon|
+    plot.call(lon,lat)
   end
 end
 
