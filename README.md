@@ -78,7 +78,7 @@ With all symbols meaning the same things as before.
 As a more practical example, suppose you're storing geographic data in
 six bitmaps of 100x100 pixels each.  The following function will give
 you the bitmap and specific coordinates of the pixel where you should
-store data for a given latitude and longitude.
+store a given latitude and longitude.
 
     def geographic_to_storage_bin(latitude, longitude)
       # Convert both angles to radians.

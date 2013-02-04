@@ -18,7 +18,7 @@ def geographic_to_storage_bin(latitude, longitude)
   # Apply the forward transformation...
   face, x, y = QuadSphere::CSC.forward(longitude, latitude)
 
-  # ... then adjust x and y so they become integer coordinates on
+  # ... then adjust x and y so they become integer coordinates on a
   # 100x100 grid, with 0,0 being top-left, as used in pictures.
   x = (100*(1+x)/2).floor
   y = 99 - (100*(1+y)/2).floor
