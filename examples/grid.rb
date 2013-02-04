@@ -7,7 +7,7 @@ require 'chunky_png'
 # it's compact and hopefully clear.
 
 # The size of each cube face, and some colours:
-size = 149
+size = 99
 colour = ChunkyPNG::Color.html_color(:grey)
 background = ChunkyPNG::Color::WHITE
 face_border = ChunkyPNG::Color::BLACK
