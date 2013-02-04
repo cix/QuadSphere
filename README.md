@@ -117,7 +117,7 @@ Trying the above on a few locations on Earth:
       [ 'Quito',         -0.2186,  -78.5097 ],
       [ 'Sydney',       -33.8683,  151.2086 ],
       [ 'Ushuaia',      -54.8000,  -68.3000 ] ].each do |city, lat, lon|
-      face, x, y = geographic_to_storage(lat, lon)
+      face, x, y = geographic_to_storage_bin(lat, lon)
       puts '%-12s - bitmap %d, x=%2d, y=%2d' % [city, face, x, y]
     end
 
