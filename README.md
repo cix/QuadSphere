@@ -73,7 +73,7 @@ The inverse transfomation looks, not very surprisingly, like this:
 
     lon, lat = QuadSphere::CSC.inverse(face, x, y)
 
-With all symbols meaning the same things as before.
+With all symbols meaning the same as before.
 
 As a more practical example, suppose you're storing geographic data in
 six bitmaps of 100x100 pixels each.  The following function will give
