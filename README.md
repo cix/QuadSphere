@@ -6,7 +6,7 @@ spherical to planar coordinates, called the _quadrilateralised
 spherical cube_.  It is useful for handling geographic or astronomical
 data, or for general mapmaking.
 
-![Quad sphere grid picture][9]
+![Sphere picture][9] ![Grid picture][10]
 
 Background
 ----------
@@ -63,4 +63,5 @@ being.
 [6]: http://www.dtic.mil/docs/citations/ADA010232
 [7]: http://rubydoc.info/github/crinc/QuadSphere/master/frames
 [8]: http://rubydoc.info/github/crinc/QuadSphere/master/QuadSphere/CSC.forward_distort
-[9]: https://raw.github.com/crinc/QuadSphere/master/examples/grid.png
+[9]: https://raw.github.com/crinc/QuadSphere/master/examples/sphere.png
+[10]: https://raw.github.com/crinc/QuadSphere/master/examples/grid.png
