@@ -146,8 +146,8 @@ nitty gritty.
 [4]: http://lambda.gsfc.nasa.gov/product/cobe/skymap_info_new.cfm
 [5]: http://en.wikipedia.org/wiki/FITS
 [6]: http://www.dtic.mil/docs/citations/ADA010232
-[7]: http://rubydoc.info/github/crinc/QuadSphere/master/frames
-[8]: http://rubydoc.info/github/crinc/QuadSphere/master/QuadSphere/CSC.forward_distort
-[9]: https://raw.github.com/crinc/QuadSphere/master/examples/sphere.png
-[10]: https://raw.github.com/crinc/QuadSphere/master/examples/grid.png
-[11]: http://rubydoc.info/github/crinc/QuadSphere/master/QuadSphere
+[7]: http://rubydoc.info/gems/quad_sphere/
+[8]: http://rubydoc.info/gems/quad_sphere/QuadSphere/CSC.forward_distort
+[9]: https://raw.github.com/cix/QuadSphere/master/examples/sphere.png
+[10]: https://raw.github.com/cix/QuadSphere/master/examples/grid.png
+[11]: http://rubydoc.info/gems/quad_sphere/QuadSphere
